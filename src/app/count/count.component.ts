@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, ReplaySubject, BehaviorSubject, Subject } from 'rxjs';
-import { CountData } from './countData';
-import { COUNTDATA } from './mock-countData';
 
 @Component({
   selector: 'app-count',
@@ -9,35 +7,23 @@ import { COUNTDATA } from './mock-countData';
   styleUrls: ['./count.component.css']
 })
 export class CountComponent implements OnInit {
-  static countNumber = 0;
-  
 
+  resultNumber = 0;
+  subject = new BehaviorSubject(0);
 
-
-  cntNum : CountData;
-  // public subject = new BehaviorSubject<CountData[]>;
-  private subject: BehaviorSubject<CountData[]> = new BehaviorSubject<CountData[]>(COUNTDATA);
-
-
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
-    return this.subject;
+    this.subject.subscribe( num => {
+      this.resultNumber = num;
+    })
   }
 
   clickMinus(){
-    
+    this.subject.next(--this.resultNumber);
   }
-
+  
   clickPlus(){
-    const number = {number :CountComponent.countNumber++}
-    COUNTDATA.push(number);
-    this.subject.next(COUNTDATA);
-  }
-
-  getCount(){
-
+    this.subject.next(++this.resultNumber);
   }
 }

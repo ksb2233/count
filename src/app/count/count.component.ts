@@ -7,9 +7,9 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./count.component.css']
 })
 export class CountComponent implements OnInit {
-  private title = 'Count Example';
-  private subject = new BehaviorSubject(0);
-  private resultNumber;
+  public title = 'Count Example';
+  public subject = new BehaviorSubject(0);
+  public resultNumber;
   
   constructor() {}
 

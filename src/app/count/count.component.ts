@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {
+  CountsService
+} from '../core';
 
 @Component({
   selector: 'app-count',
@@ -7,25 +11,23 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./count.component.css']
 })
 export class CountComponent implements OnInit {
-  public title = 'Count Example';
-  public subject = new BehaviorSubject(0);
   public resultNumber;
   
-  constructor() {}
+
+  constructor(
+    private countsService: CountsService,
+    // private router: Router
+  ) {}
 
   ngOnInit() {
-    this.subject.subscribe( number => {
-      this.resultNumber = number;
-    });
+    this.countsService.subject
   }
 
-  clickMinusButton() {
-    this.title = 'Minus Count!';
-    this.subject.next(this.resultNumber - 1);
+  clickMinusCount() {
+    this.countsService.excuteCount(this.resultNumber - 1);
   }
   
-  clickPlusButton() {
-    this.title = 'Plus Count!';
-    this.subject.next(this.resultNumber + 1);
+  clickPlusCount() {
+    this.countsService.excuteCount(this.resultNumber + 1);
   }
 }

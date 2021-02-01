@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CountComponent } from './count/count.component';
+import { CoreModule } from './core/core.module';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { CountComponent } from './count/count.component';
     CountComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CoreModule,
+    MainModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

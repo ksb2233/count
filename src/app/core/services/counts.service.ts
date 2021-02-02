@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CountsService {
-    subject = new BehaviorSubject(0);
-    count$ = this.subject.asObservable();
+    countSubject = new BehaviorSubject(0);
+    count$ = this.countSubject.asObservable();
 
-    private getCurrentCount() : number{
-        return this.subject.getValue();
+    public getCurrentCount() {
+        return this.count$;
     }
 
-    public excuteCount(number) {
-        this.subject.next(number);
+    public excuteCount(excuteValue) {
+        this.countSubject.next(this.getCurrentValue() + excuteValue)
+    }
+
+    public getCurrentValue() {
+        return this.countSubject.getValue();
     }
 }

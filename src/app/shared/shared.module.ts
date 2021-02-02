@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CountComponent } from './count/count.component';
-
-
+// import { CountComponent } from './count/count.component';
 
 @NgModule({
-  declarations: [CountComponent],
+  declarations: [
+    // CountComponent
+  ],
   imports: [
     CommonModule
   ]
